@@ -1,0 +1,18 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    admin: bug-demo
+  cloud:
+    gateway:
+      routes:
+        - id: httpbin
+          uri: https://httpbin.org
+          predicates:
+            - Path=/httpbin/**
+          filters:
+            - StripPrefix=1
+    sentinel:
+      transport:
+        dashboard: localhost:8080
